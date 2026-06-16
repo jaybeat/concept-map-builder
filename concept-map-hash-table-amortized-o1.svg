@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif">
+  <style>
+    .bg   { fill:#ffffff; }
+    .th   { font-size:13px; font-weight:600; }
+    .ts   { font-size:10px; fill:#475569; }
+    .arr  { stroke:#64748b; stroke-width:1.5; fill:none; }
+    .lbl  { fill:#ffffff; }
+    .xlink{ stroke:#D85A30; stroke-width:1.5; fill:none; }
+    .xtext{ fill:#9a3412; font-size:10px; }
+    .c-purple rect{ fill:#f3e8ff; stroke:#9333ea; } .c-purple .th{ fill:#6b21a8; }
+    .c-blue   rect{ fill:#e0f2fe; stroke:#0284c7; } .c-blue   .th{ fill:#075985; }
+    .c-teal   rect{ fill:#ccfbf1; stroke:#0d9488; } .c-teal   .th{ fill:#115e59; }
+    .c-amber  rect{ fill:#fef3c7; stroke:#d97706; } .c-amber  .th{ fill:#92400e; }
+    .c-gray   rect{ fill:#f1f5f9; stroke:#64748b; } .c-gray   .th{ fill:#334155; }
+  </style>
+  <rect class="bg" x="0" y="0" width="900" height="520"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- 焦点问题 -->
+  <text class="ts" x="40" y="24">焦点问题：哈希表凭什么做到均摊 O(1)？</text>
+
+  <!-- ================= 连线与连接词 ================= -->
+
+  <!-- 1. 数组随机访问 → 均摊 O(1) : 提供 O(1) 基底 -->
+  <line class="arr" x1="245" y1="162" x2="350" y2="84" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="264" y="107" width="72" height="15"/>
+  <text class="ts" x="300" y="118" text-anchor="middle">提供 O(1) 基底</text>
+
+  <!-- 2. 哈希函数 → 均摊 O(1) : 映射后 O(1) -->
+  <line class="arr" x1="420" y1="140" x2="420" y2="84" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="390" y="107" width="62" height="15"/>
+  <text class="ts" x="421" y="118" text-anchor="middle">映射后 O(1)</text>
+
+  <!-- 3. 均摊分析 → 均摊 O(1) : 分摊偶发高代价 -->
+  <line class="arr" x1="625" y1="162" x2="490" y2="84" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="518" y="107" width="78" height="15"/>
+  <text class="ts" x="557" y="118" text-anchor="middle">分摊偶发高代价</text>
+
+  <!-- 4. 桶索引 → 数组随机访问 : 依托于 -->
+  <line class="arr" x1="260" y1="240" x2="195" y2="184" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="214" y="207" width="40" height="15"/>
+  <text class="ts" x="234" y="218" text-anchor="middle">依托于</text>
+
+  <!-- 5. 哈希函数 → 桶索引 : 映射到 -->
+  <line class="arr" x1="378" y1="184" x2="330" y2="240" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="342" y="207" width="40" height="15"/>
+  <text class="ts" x="362" y="218" text-anchor="middle">映射到</text>
+
+  <!-- 6. 冲突 → 哈希函数 : 由…产生 -->
+  <line class="arr" x1="380" y1="240" x2="420" y2="184" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="386" y="207" width="50" height="15"/>
+  <text class="ts" x="411" y="218" text-anchor="middle">由…产生</text>
+
+  <!-- 7. 链表法 → 冲突 : 解决 -->
+  <line class="arr" x1="310" y1="362" x2="345" y2="282" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="314" y="310" width="32" height="15"/>
+  <text class="ts" x="330" y="321" text-anchor="middle">解决</text>
+
+  <!-- 8. 开放寻址 → 冲突 : 解决 -->
+  <line class="arr" x1="430" y1="340" x2="395" y2="282" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="398" y="310" width="32" height="15"/>
+  <text class="ts" x="414" y="321" text-anchor="middle">解决</text>
+
+  <!-- 9. 均摊分析 → 单次操作 O(1) : 体现为 -->
+  <line class="arr" x1="680" y1="184" x2="600" y2="240" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="624" y="207" width="40" height="15"/>
+  <text class="ts" x="644" y="218" text-anchor="middle">体现为</text>
+
+  <!-- 10. 均摊分析 → 偶尔扩容 O(n) : 偶发代价为 -->
+  <line class="arr" x1="680" y1="184" x2="760" y2="240" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="697" y="207" width="58" height="15"/>
+  <text class="ts" x="726" y="218" text-anchor="middle">偶发代价为</text>
+
+  <!-- 11. 负载因子 → 重哈希 : 决定何时 -->
+  <line class="arr" x1="355" y1="452" x2="660" y2="452" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="482" y="444" width="52" height="15"/>
+  <text class="ts" x="508" y="455" text-anchor="middle">决定何时</text>
+
+  <!-- 12. 负载因子 → 冲突 : 决定…概率 -->
+  <line class="arr" x1="300" y1="430" x2="380" y2="282" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="314" y="348" width="60" height="15"/>
+  <text class="ts" x="344" y="359" text-anchor="middle">决定…概率</text>
+
+  <!-- 13. 链表法 → 最坏情况 : 最坏退化为 -->
+  <line class="arr" x1="310" y1="362" x2="560" y2="362" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="406" y="355" width="60" height="15"/>
+  <text class="ts" x="436" y="366" text-anchor="middle">最坏退化为</text>
+
+  <!-- 14. 开放寻址 → 最坏情况 : 聚集时退化为 -->
+  <line class="arr" x1="485" y1="362" x2="560" y2="362" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="493" y="355" width="70" height="15"/>
+  <text class="ts" x="528" y="366" text-anchor="middle">聚集时退化为</text>
+
+  <!-- 15. 交叉：冲突 → 单次操作 O(1) : 低负载下仍保持 -->
+  <line class="xlink" x1="425" y1="262" x2="525" y2="262" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="436" y="256" width="82" height="15"/>
+  <text class="xtext" x="477" y="267" text-anchor="middle">低负载下仍保持</text>
+
+  <!-- 16. 交叉：桶索引 → 单次操作 O(1) : 无冲突时直达 -->
+  <path class="xlink" d="M 330 262 H 360 V 230 H 525 V 240" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="408" y="224" width="68" height="15"/>
+  <text class="xtext" x="442" y="235" text-anchor="middle">无冲突时直达</text>
+
+  <!-- 17. 交叉：均匀分布假设 → 哈希函数 : 保证 -->
+  <path class="xlink" d="M 500 430 V 200 H 460 V 184 H 420" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="464" y="194" width="32" height="15"/>
+  <text class="xtext" x="480" y="205" text-anchor="middle">保证</text>
+
+  <!-- 18. 交叉：均匀分布假设 → 冲突 : 降低…概率 -->
+  <line class="xlink" x1="500" y1="430" x2="380" y2="240" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="413" y="327" width="56" height="15"/>
+  <text class="xtext" x="441" y="338" text-anchor="middle">降低…概率</text>
+
+  <!-- 19. 交叉：均匀分布假设 → 最坏情况 : 失效时导致 -->
+  <line class="xlink" x1="565" y1="452" x2="560" y2="384" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="533" y="411" width="60" height="15"/>
+  <text class="xtext" x="563" y="422" text-anchor="middle">失效时导致</text>
+
+  <!-- 20. 交叉：重哈希 → 偶尔扩容 O(n) : 产生 -->
+  <line class="xlink" x1="720" y1="430" x2="770" y2="282" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="729" y="348" width="32" height="15"/>
+  <text class="xtext" x="745" y="359" text-anchor="middle">产生</text>
+
+  <!-- 21. 交叉：负载因子 → 单次操作 O(1) : 保证单次低成本 -->
+  <path class="xlink" d="M 300 430 V 335 H 590 V 240" marker-end="url(#arrow)"/>
+  <rect class="lbl" x="408" y="330" width="78" height="15"/>
+  <text class="xtext" x="447" y="341" text-anchor="middle">保证单次低成本</text>
+
+  <!-- ================= 节点 ================= -->
+
+  <!-- 顶层 -->
+  <g class="node c-purple" transform="translate(420,62)">
+    <rect x="-70" y="-22" width="140" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">均摊 O(1) 操作</text>
+    <text class="ts" dominant-baseline="central" y="9">查找 · 插入 · 删除</text>
+  </g>
+
+  <!-- 第二层 -->
+  <g class="node c-blue" transform="translate(180,162)">
+    <rect x="-65" y="-22" width="130" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">数组随机访问</text>
+    <text class="ts" dominant-baseline="central" y="9">O(1) 定位</text>
+  </g>
+
+  <g class="node c-blue" transform="translate(420,162)">
+    <rect x="-55" y="-22" width="110" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">哈希函数</text>
+    <text class="ts" dominant-baseline="central" y="9">键 → 整数</text>
+  </g>
+
+  <g class="node c-teal" transform="translate(680,162)">
+    <rect x="-55" y="-22" width="110" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">均摊分析</text>
+    <text class="ts" dominant-baseline="central" y="9">代价分摊</text>
+  </g>
+
+  <!-- 第三层 -->
+  <g class="node c-blue" transform="translate(280,262)">
+    <rect x="-50" y="-22" width="100" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">桶索引</text>
+    <text class="ts" dominant-baseline="central" y="9">数组下标</text>
+  </g>
+
+  <g class="node c-amber" transform="translate(380,262)">
+    <rect x="-45" y="-22" width="90" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">冲突</text>
+    <text class="ts" dominant-baseline="central" y="9">哈希碰撞</text>
+  </g>
+
+  <g class="node c-teal" transform="translate(590,262)">
+    <rect x="-65" y="-22" width="130" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">单次操作 O(1)</text>
+    <text class="ts" dominant-baseline="central" y="9">无扩容时</text>
+  </g>
+
+  <g class="node c-teal" transform="translate(770,262)">
+    <rect x="-65" y="-22" width="130" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">偶尔扩容 O(n)</text>
+    <text class="ts" dominant-baseline="central" y="9">触发重哈希</text>
+  </g>
+
+  <!-- 第四层 -->
+  <g class="node c-amber" transform="translate(260,362)">
+    <rect x="-50" y="-22" width="100" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">链表法</text>
+    <text class="ts" dominant-baseline="central" y="9">同槽成链</text>
+  </g>
+
+  <g class="node c-amber" transform="translate(430,362)">
+    <rect x="-55" y="-22" width="110" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">开放寻址</text>
+    <text class="ts" dominant-baseline="central" y="9">顺次探测</text>
+  </g>
+
+  <g class="node c-gray" transform="translate(630,362)">
+    <rect x="-70" y="-22" width="140" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">最坏情况 O(n)</text>
+    <text class="ts" dominant-baseline="central" y="9">全键冲突</text>
+  </g>
+
+  <!-- 第五层 -->
+  <g class="node c-gray" transform="translate(300,452)">
+    <rect x="-55" y="-22" width="110" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">负载因子 α</text>
+    <text class="ts" dominant-baseline="central" y="9">n / m</text>
+  </g>
+
+  <g class="node c-gray" transform="translate(500,452)">
+    <rect x="-65" y="-22" width="130" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">均匀分布假设</text>
+    <text class="ts" dominant-baseline="central" y="9">理想前提</text>
+  </g>
+
+  <g class="node c-gray" transform="translate(720,452)">
+    <rect x="-60" y="-22" width="120" height="44" rx="8" stroke-width="0.5"/>
+    <text class="th" dominant-baseline="central" y="-6">重哈希 / 扩容</text>
+    <text class="ts" dominant-baseline="central" y="9">拷贝全部元素</text>
+  </g>
+</svg>
